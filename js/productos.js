@@ -1,121 +1,210 @@
-const PRODUCTOS = [
-  // ================= CONJUNTOS =================
+const URL_STOCK_SHEET = "https://script.google.com/macros/s/AKfycbx2rRMIaBvYnLwCz6qhmaKgbvPKYkwT68GmN1lLChfkbN8uLS-WYOmixeDvTV7SsMyXaA/exec";
+
+const PRODUCTOS_RESPALDO = [
+  // ================= BIKINIS =================
   {
     id: 1,
-    nombre: "Conjunto Encaje Celeste",
-    categoria: "conjuntos",
-    precio: 28500,
-    descripcion: "Corpiño de encaje delicado con breteles regulables y bombacha a juego.",
-    imagen: "imgfoto1",
-    talles: ["85", "90", "95", "100"],
+    nombre: "Bikini Triángulo Negro",
+    categoria: "bikinis",
+    precio: 27000,
+    descripcion: "Bikini triángulo con tiras regulables y bombacha con lazos laterales en talle 90.",
+    imagen: "imgfoto6",
+    talles: ["90"],
     colores: [
-      { nombre: "Celeste", hex: "#a8c7e7" },
-      { nombre: "Blanco", hex: "#f7f7f7" }
-    ]
+      { nombre: "Negro", hex: "#1f1f1f" }
+    ],
+    stockPorVariante: {
+      "Negro|90": 5
+    }
   },
   {
     id: 2,
-    nombre: "Conjunto Encaje Marino",
-    categoria: "conjuntos",
-    precio: 29500,
-    descripcion: "Diseño de encaje en tono azul profundo con detalle regulable en cintura.",
-    imagen: "imgfoto2",
-    talles: ["85", "90", "95", "100"],
+    nombre: "Bikini Triángulo Bordó",
+    categoria: "bikinis",
+    precio: 27000,
+    descripcion: "Bikini en tono bordó con detalle metálico al frente y tiras regulables en talle 90.",
+    imagen: "imgfoto7",
+    talles: ["90"],
     colores: [
-      { nombre: "Azul Marino", hex: "#1e2f54" },
-      { nombre: "Negro", hex: "#222222" }
-    ]
+      { nombre: "Bordó", hex: "#6e2330" }
+    ],
+    stockPorVariante: {
+      "Bordó|90": 5
+    }
   },
   {
     id: 3,
-    nombre: "Conjunto Encaje Blanco & Falda",
-    categoria: "conjuntos",
-    precio: 32000,
-    descripcion: "Corpiño triángulo con encaje, colaless y faldita liviana traslúcida.",
-    imagen: "imgfoto3",
-    talles: ["85", "90", "95", "100"],
+    nombre: "Bikini Triángulo Verde",
+    categoria: "bikinis",
+    precio: 27000,
+    descripcion: "Bikini verde esmeralda de calce regulable con tiras en cuello y cadera en talle 90.",
+    imagen: "imgfoto8",
+    talles: ["90"],
     colores: [
-      { nombre: "Blanco", hex: "#f7f7f7" },
-      { nombre: "Vanilla", hex: "#FAF4E5" }
-    ]
+      { nombre: "Verde", hex: "#1b6b52" }
+    ],
+    stockPorVariante: {
+      "Verde|90": 5
+    }
   },
+
+  // ================= CONJUNTOS =================
   {
     id: 4,
-    nombre: "Conjunto Lila & Rosa Pastel",
+    nombre: "Conjunto con Pollera",
     categoria: "conjuntos",
-    precio: 31000,
-    descripcion: "Puntilla lila con detalle de rosa y terminaciones en tul rosa pastel.",
-    imagen: "imgfoto4",
-    talles: ["85", "90", "95", "100"],
+    precio: 32000,
+    descripcion: "Corpiño triángulo de encaje, colaless y faldita liviana traslúcida en talle 90.",
+    imagen: "imgfoto9",
+    talles: ["90"],
     colores: [
-      { nombre: "Lila / Rosa", hex: "#b892d6" },
-      { nombre: "Rosa Pastel", hex: "#f2a7c0" }
-    ]
+      { nombre: "Negro", hex: "#222222" },
+      { nombre: "Rojo", hex: "#c82838" }
+    ],
+    stockPorVariante: {
+      "Negro|90": 5,
+      "Rojo|90": 5
+    }
   },
   {
     id: 5,
-    nombre: "Conjunto Red Negro con Ligas",
+    nombre: "Conjunto Negro de Encaje",
     categoria: "conjuntos",
     precio: 33500,
-    descripcion: "Corpiño triángulo de red negra, bombacha y portaligas regulable.",
-    imagen: "imgfoto5",
-    talles: ["85", "90", "95", "100"],
+    descripcion: "Conjunto negro de encaje bordado con breteles y tiras regulables en talle 100.",
+    imagen: "imgfoto10",
+    talles: ["100"],
     colores: [
-      { nombre: "Negro", hex: "#1f1f1f" }
-    ]
+      { nombre: "Negro", hex: "#1e1e1e" }
+    ],
+    stockPorVariante: {
+      "Negro|100": 5
+    }
   },
   {
     id: 6,
-    nombre: "Conjunto Encaje Bordó",
+    nombre: "Conjunto Blanco Encaje",
     categoria: "conjuntos",
-    precio: 29900,
-    descripcion: "Corpiño con aro en encaje bordó y bombacha regulable con herrajes.",
-    imagen: "imgfoto6",
-    talles: ["85", "90", "95", "100"],
+    precio: 30000,
+    descripcion: "Corpiño con aro y colaless de encaje blanco delicado en talle 85.",
+    imagen: "imgfoto11",
+    talles: ["85"],
     colores: [
-      { nombre: "Bordó", hex: "#7d1d35" },
-      { nombre: "Rosa Antiguo", hex: "#C49994" }
-    ]
+      { nombre: "Blanco", hex: "#f7f7f7" }
+    ],
+    stockPorVariante: {
+      "Blanco|85": 5
+    }
   },
-
-  // ================= PIJAMAS =================
   {
     id: 7,
-    nombre: "Pijama Satén Rosa Viejo",
-    categoria: "pijamas",
-    precio: 36000,
-    descripcion: "Set de musculosa con breteles regulables y short de satén suave al tacto.",
-    imagen: "imgfoto7",
-    talles: ["S", "M", "L", "XL"],
+    nombre: "Conjunto Rosa Encaje",
+    categoria: "conjuntos",
+    precio: 31000,
+    descripcion: "Conjunto en tono rosa con encaje floral y breteles regulables en talle 95.",
+    imagen: "imgfoto12",
+    talles: ["95"],
     colores: [
-      { nombre: "Rosa Antiguo", hex: "#C49994" },
-      { nombre: "Champagne", hex: "#FAF4E5" }
-    ]
+      { nombre: "Rosa", hex: "#f04d8c" }
+    ],
+    stockPorVariante: {
+      "Rosa|95": 5
+    }
   },
   {
     id: 8,
-    nombre: "Pijama Algodón Soft Estampado",
-    categoria: "pijamas",
-    precio: 34500,
-    descripcion: "Remera manga corta y pantalón largo de algodón peinado súper cómodo.",
-    imagen: "imgfoto8",
-    talles: ["S", "M", "L", "XL"],
+    nombre: "Conjunto Verde Encaje",
+    categoria: "conjuntos",
+    precio: 31000,
+    descripcion: "Conjunto verde de encaje con terminaciones delicadas y reguladores en talle 90.",
+    imagen: "imgfoto13",
+    talles: ["90"],
     colores: [
-      { nombre: "Crema", hex: "#FAF4E5" },
-      { nombre: "Celeste Pastel", hex: "#a8c7e7" }
-    ]
-  },
-  {
-    id: 9,
-    nombre: "Pijama Modal con Puntilla",
-    categoria: "pijamas",
-    precio: 35000,
-    descripcion: "Conjunto de descanso en modal liviano con detalles de puntilla delicada.",
-    imagen: "imgfoto9",
-    talles: ["S", "M", "L", "XL"],
-    colores: [
-      { nombre: "Negro", hex: "#222222" },
-      { nombre: "Bordó", hex: "#7d1d35" }
-    ]
+      { nombre: "Verde", hex: "#548c6e" }
+    ],
+    stockPorVariante: {
+      "Verde|90": 5
+    }
   }
 ];
+
+let PRODUCTOS = [...PRODUCTOS_RESPALDO];
+
+function agruparFilasDeSheet(filas) {
+  if (!Array.isArray(filas) || filas.length === 0) {
+    return [...PRODUCTOS_RESPALDO];
+  }
+
+  const mapa = new Map();
+
+  filas.forEach((fila) => {
+    const id = Number(fila.id);
+    const nombre = String(fila.nombre || "").trim();
+    if (!id || !nombre) return;
+
+    const categoria = String(fila.categoria || "conjuntos").trim().toLowerCase();
+    const precio = Number(fila.precio) || 0;
+    const colorNombre = String(fila.color || "Único").trim();
+    const colorHex = String(fila.colorHex || "#C49994").trim();
+    const talle = String(fila.talle || "Único").trim();
+    const stock = Math.max(0, Number(fila.stock) || 0);
+    const imagen = String(fila.imagen || "").trim();
+
+    if (!mapa.has(id)) {
+      const respaldo = PRODUCTOS_RESPALDO.find((p) => p.id === id);
+      mapa.set(id, {
+        id,
+        nombre,
+        categoria,
+        precio,
+        descripcion:
+          respaldo?.descripcion ||
+          `${nombre} en talle ${talle}, color ${colorNombre}.`,
+        imagen: imagen || respaldo?.imagen || "",
+        talles: [],
+        colores: [],
+        stockPorVariante: {}
+      });
+    }
+
+    const prod = mapa.get(id);
+    if (precio > 0) prod.precio = precio;
+    if (imagen) prod.imagen = imagen;
+
+    if (!prod.talles.includes(talle)) {
+      prod.talles.push(talle);
+    }
+
+    const existeColor = prod.colores.some(
+      (c) => c.nombre.toLowerCase() === colorNombre.toLowerCase()
+    );
+    if (!existeColor) {
+      prod.colores.push({ nombre: colorNombre, hex: colorHex });
+    }
+
+    const clave = `${colorNombre}|${talle}`;
+    prod.stockPorVariante[clave] = (prod.stockPorVariante[clave] || 0) + stock;
+  });
+
+  const listaFinal = Array.from(mapa.values());
+  return listaFinal.length > 0 ? listaFinal : [...PRODUCTOS_RESPALDO];
+}
+
+async function cargarProductosDesdeSheet() {
+  if (!URL_STOCK_SHEET || URL_STOCK_SHEET.includes("PEGA_AQUI")) {
+    PRODUCTOS = [...PRODUCTOS_RESPALDO];
+    return PRODUCTOS;
+  }
+
+  try {
+    const respuesta = await fetch(URL_STOCK_SHEET, { cache: "no-store" });
+    if (!respuesta.ok) throw new Error("Error al consultar la planilla");
+    const datos = await respuesta.json();
+    PRODUCTOS = agruparFilasDeSheet(datos);
+  } catch (error) {
+    console.warn("No se pudo leer Google Sheets, usando respaldo local:", error);
+    PRODUCTOS = [...PRODUCTOS_RESPALDO];
+  }
+
+  return PRODUCTOS;
+}
