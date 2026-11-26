@@ -130,13 +130,25 @@ body {
   transform: translateY(-1px);
 }
 
+/* Portada */
 .hero {
-  background: linear-gradient(135deg, rgba(92, 70, 62, 0.32) 0%, rgba(110, 85, 76, 0.38) 100%),
-              url('../img/portada.jpeg') center/cover no-repeat;
+  background: url('../img/portada.jpeg') center/cover no-repeat;
   min-height: 440px;
   padding: 90px 0;
   text-align: center;
   border-bottom: 1px solid var(--rosa-claro-borde);
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  background: rgba(250, 244, 229, 0.84);
+  backdrop-filter: blur(4px);
+  padding: 28px 24px;
+  border-radius: 24px;
+  max-width: 680px;
+  border: 1px solid var(--rosa-claro-borde);
+  box-shadow: var(--sombra-rosa);
 }
 
 .badge {
@@ -148,15 +160,15 @@ body {
   border-radius: 25px;
   font-size: 0.82rem;
   font-weight: 600;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
   box-shadow: var(--sombra-rosa);
 }
 
 .hero h1 {
   font-family: var(--fuente-titulo);
-  font-size: 3rem;
-  max-width: 660px;
-  margin: 0 auto 16px;
+  font-size: 2.8rem;
+  max-width: 620px;
+  margin: 0 auto 22px;
   line-height: 1.15;
   color: var(--texto-oscuro);
 }
@@ -929,14 +941,230 @@ h2 {
   }
 }
 
+/* =========================================================
+   ADAPTACIÓN ESTÉTICA PARA CELULARES (PANTALLAS PEQUEÑAS)
+   ========================================================= */
 @media (max-width: 680px) {
+  .container {
+    width: 93%;
+  }
+
+  .top-bar {
+    font-size: 0.76rem;
+    padding: 7px 10px;
+  }
+
+  .nav-content {
+    height: auto;
+    padding: 10px 0;
+    gap: 8px;
+  }
+
   .nav-links {
     display: none;
   }
+
   .logo {
-    font-size: 1.4rem;
+    font-size: 1.28rem;
+    line-height: 1.05;
   }
+
+  .logo span {
+    display: block;
+    font-size: 0.9rem;
+  }
+
+  .nav-acciones {
+    gap: 6px;
+  }
+
+  .btn-secundario-nav,
+  .btn-carrito {
+    padding: 7px 11px;
+    font-size: 0.78rem;
+  }
+
+  /* Portada: se ve completa arriba y el texto queda abajo sin tapar el título de la imagen */
+  .hero {
+    display: block;
+    background: var(--bg-suave);
+    min-height: auto;
+    padding: 0 0 26px 0;
+  }
+
+  .hero::before {
+    content: "";
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: url('../img/portada.jpeg') center/contain no-repeat;
+    background-color: var(--bg-suave);
+    margin-bottom: 16px;
+  }
+
+  .hero-content {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 18px 16px;
+    border-radius: 18px;
+  }
+
+  .badge {
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+
   .hero h1 {
-    font-size: 2.2rem;
+    font-size: 1.65rem;
+    margin-bottom: 16px;
+  }
+
+  .btn-primario {
+    padding: 11px 24px;
+    font-size: 0.88rem;
+  }
+
+  /* Catálogo en 2 columnas prolijas para celular */
+  .seccion {
+    padding: 42px 0;
+  }
+
+  .seccion-header {
+    margin-bottom: 24px;
+    gap: 12px;
+  }
+
+  h2 {
+    font-size: 1.95rem;
+  }
+
+  .input-buscador {
+    font-size: 0.85rem;
+    padding: 9px 16px;
+  }
+
+  .filtros {
+    gap: 6px;
+  }
+
+  .filtro-btn {
+    padding: 6px 13px;
+    font-size: 0.8rem;
+  }
+
+  .controles-extra {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .select-compacto {
+    flex: 1;
+    font-size: 0.8rem;
+    padding: 7px 10px;
+  }
+
+  .grid-productos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .card-producto {
+    border-radius: 14px;
+  }
+
+  .card-producto img {
+    height: 175px;
+  }
+
+  .btn-fav {
+    width: 30px;
+    height: 30px;
+    top: 8px;
+    right: 8px;
+    font-size: 0.95rem;
+  }
+
+  .card-info {
+    padding: 12px 10px;
+  }
+
+  .card-categoria {
+    font-size: 0.65rem;
+    letter-spacing: 0.8px;
+  }
+
+  .card-titulo {
+    font-size: 1.08rem;
+    line-height: 1.2;
+    margin: 3px 0;
+  }
+
+  .card-rating {
+    font-size: 0.72rem;
+    gap: 3px;
+    margin-bottom: 4px;
+  }
+
+  .estrella-icono {
+    font-size: 0.8rem;
+  }
+
+  .card-precio {
+    font-size: 0.98rem;
+    margin-bottom: 8px;
+  }
+
+  .colores-row {
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .color-label {
+    font-size: 0.74rem;
+  }
+
+  .color-btn {
+    width: 18px;
+    height: 18px;
+  }
+
+  .select-talle {
+    padding: 6px 8px;
+    font-size: 0.78rem;
+    margin-bottom: 8px;
+  }
+
+  .texto-stock-card {
+    font-size: 0.74rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .btn-agregar {
+    padding: 9px 8px;
+    font-size: 0.8rem;
+  }
+
+  /* Guía de talles y tabla en móvil */
+  .calculadora-talle {
+    padding: 16px 14px;
+  }
+
+  .calc-inputs input {
+    width: 115px;
+  }
+
+  .tabla-talles th,
+  .tabla-talles td {
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+
+  /* Botón flotante de WhatsApp compacto */
+  .wsp-flotante {
+    bottom: 14px;
+    right: 14px;
+    padding: 10px 16px;
+    font-size: 0.82rem;
   }
 }
