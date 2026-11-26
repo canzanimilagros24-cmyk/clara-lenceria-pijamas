@@ -125,6 +125,130 @@ const PRODUCTOS_RESPALDO = [
     stockPorVariante: {
       "Verde|90": 5
     }
+  },
+  {
+    id: 9,
+    nombre: "conjunto Blanco Transparente",
+    categoria: "conjuntos",
+    precio: 20000,
+    descripcion:"Conjunto blanco transaparente con detalles de encaje y tiras ajustables en talle 95",
+    imagen: "imgfoto14",
+    talles: ["95"],
+    colores: [
+      { nombre: "Blanco", hex: "#f7f7f7"}
+    ],
+    stockPorVariante: {
+      "Blanco|95": 2
+    }
+  },
+  {
+    id: 10,
+    nombre: "Conjunto Rojo Transparente",
+    categoria: "conjuntos",
+    precio: 20000,
+    descripcion: "Conjunto rojo transaparente con detalles de encaje y tiras ajustables en talle 100",
+    imagen: "imgfoto15",
+    talles: ["100"],
+    colores: [
+      { nombre: "Rojo", hex: "#c82838"}
+    ],
+    stockPorVariante: {
+      "Rojo|100": 2
+    }
+  },
+  {
+    id: 11,
+    nombre: "Pijama de Tela suave Negro",
+    categoria: "pijamas",
+    precio: 17000,
+    descripcion: "Pijama de tela suave en color negro en talle 90 y 100",
+    imagen: "imgfoto16",
+    talles: ["90", "100"],
+    colores: [
+      { nombre: "Negro", hex: "#000000" }
+    ],
+    stockPorVariante: {
+      "Negro|90": 2,
+      "Negro|100": 2
+    }
+  },
+  {
+    id: 12,
+    nombre: "Pijama de Tela suave Blanco",
+    categoria: "pijamas",
+    precio: 17000,
+    descripcion: "Pijama de tela suave en color blanco en talle 90 y 100",
+    imagen: "imgfoto17",
+    talles: ["90", "100"],
+    colores: [
+      { nombre: "Blanco", hex: "#f7f7f7" }
+    ],
+    stockPorVariante: {
+      "Blanco|90": 2,
+      "Blanco|100": 2
+    }
+  },
+  {
+    id: 13, 
+    nombre: "Pijama de Tela suave Rosa",
+    categoria: "pijamas",
+    precio: 17000,
+    descripcion: "Pijama de tela suave en color rosa en talle 90 y 100",
+    imagen: "imgfoto18",
+    talles: ["90", "100"],
+    colores: [
+      { nombre: "Rosa", hex: "#f04d8c" }
+    ],
+    stockPorVariante: {
+      "Rosa|90": 2,
+      "Rosa|100": 2
+    } 
+  },
+  {
+    id: 14,
+    nombre: "Pijama de Tela suave Amarillo Claro",
+    categoria: "pijamas",
+    precio: 17000,
+    descripcion: "Pijama de tela suave en color amarillo claro en talle 90 y 100",
+    imagen: "imgfoto19",
+    talles: ["90", "100"],
+    colores: [
+      { nombre: "Amarillo Claro", hex: "#ffdb63" }
+    ],
+    stockPorVariante: {
+      "Amarillo Claro|90": 2,
+      "Amarillo Claro|100": 2
+    }
+  },
+  {
+    id: 15,
+    nombre: "Conjunto de Encaje Azul Marino",
+    categoria: "conjuntos",
+    precio: 32000,
+    descripcion: "Conjunto de encaje azul marino con detalles delicados y tiras ajustables en talle 105",
+    imagen: "imgfoto20",
+    talles: ["105"],
+    colores: [
+      { nombre: "Azul Marino", hex: "#003366" }
+    ],
+    stockPorVariante: {
+      "Azul Marino|105": 2
+    }   
+  },
+  {
+    id: 16,
+    nombre: "Conjunto de Encaje Verde Militar",
+    categoria: "conjuntos",
+    precio: 32000,
+    descripcion: "Conjunto de encaje verde militar con detalles delicados y tiras ajustables en talle 110",
+    imagen: "imgfoto21",
+    talles: ["110"],
+    colores: [
+      { nombre: "Verde Militar", hex: "#228B22" }
+    ],
+    stockPorVariante: {
+      "Verde Militar|110": 2
+    }
   }
 ];
 
