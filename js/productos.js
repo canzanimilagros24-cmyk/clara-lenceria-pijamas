@@ -253,6 +253,7 @@ const PRODUCTOS_RESPALDO = [
 ];
 
 let PRODUCTOS = [...PRODUCTOS_RESPALDO];
+let RESENAS_REMOTAS = [];
 
 function agruparFilasDeSheet(filas) {
   if (!Array.isArray(filas) || filas.length === 0) {
@@ -324,7 +325,10 @@ async function cargarProductosDesdeSheet() {
     const respuesta = await fetch(URL_STOCK_SHEET, { cache: "no-store" });
     if (!respuesta.ok) throw new Error("Error al consultar la planilla");
     const datos = await respuesta.json();
-    PRODUCTOS = agruparFilasDeSheet(datos);
+
+    const filasProductos = Array.isArray(datos) ? datos : (datos.productos || []);
+    PRODUCTOS = agruparFilasDeSheet(filasProductos);
+    RESENAS_REMOTAS = Array.isArray(datos.resenas) ? datos.resenas : [];
   } catch (error) {
     console.warn("No se pudo leer Google Sheets, usando respaldo local:", error);
     PRODUCTOS = [...PRODUCTOS_RESPALDO];

@@ -75,6 +75,49 @@ function guardarEstado() {
   localStorage.setItem(CLAVE_RESENAS_GENERALES, JSON.stringify(resenasGenerales));
 }
 
+function aplicarResenasRemotas() {
+  if (typeof RESENAS_REMOTAS === "undefined" || !Array.isArray(RESENAS_REMOTAS) || RESENAS_REMOTAS.length === 0) return;
+
+  const generalesDesdeSheet = [];
+  const porProductoDesdeSheet = {};
+
+  RESENAS_REMOTAS.slice().reverse().forEach((r) => {
+    const item = {
+      autor: String(r.autor || "Clienta"),
+      estrellas: Number(r.estrellas) || 5,
+      comentario: String(r.comentario || "")
+    };
+    if (!item.comentario) return;
+
+    if (r.tipo === "producto" && r.productoId) {
+      const id = Number(r.productoId);
+      if (!porProductoDesdeSheet[id]) porProductoDesdeSheet[id] = [];
+      porProductoDesdeSheet[id].push(item);
+    } else {
+      generalesDesdeSheet.push({
+        ...item,
+        productoNombre: r.productoNombre || "Opinión sobre la tienda"
+      });
+    }
+  });
+
+  resenasGenerales = generalesDesdeSheet;
+  resenasPorProducto = porProductoDesdeSheet;
+}
+
+async function enviarResenaASheet(payload) {
+  if (typeof URL_STOCK_SHEET === "undefined" || !URL_STOCK_SHEET) return;
+  try {
+    await fetch(URL_STOCK_SHEET, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+  } catch (error) {
+    console.warn("No se pudo guardar la reseña en Google Sheets:", error);
+  }
+}
+
 function obtenerPromedioRating(productoId) {
   const lista = resenasPorProducto[productoId] || [];
   if (lista.length === 0) return { promedio: 0, cantidad: 0 };
@@ -609,6 +652,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   poblarSelectProductosResenas();
 
   await cargarProductosDesdeSheet();
+  aplicarResenasRemotas();
   renderizarProductos();
   renderizarResenasGenerales();
   poblarSelectProductosResenas();
@@ -692,11 +736,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         ...nuevaResena,
         productoNombre: "Opinión sobre la tienda"
       });
+      enviarResenaASheet({
+        tipo: "general",
+        productoId: "",
+        productoNombre: "Opinión sobre la tienda",
+        ...nuevaResena
+      });
     } else {
       const idProd = Number(prodSeleccionado);
+      const prodObj = PRODUCTOS.find((p) => p.id === idProd);
       if (!resenasPorProducto[idProd]) resenasPorProducto[idProd] = [];
       resenasPorProducto[idProd].unshift(nuevaResena);
       renderizarProductos();
+      enviarResenaASheet({
+        tipo: "producto",
+        productoId: idProd,
+        productoNombre: prodObj ? prodObj.nombre : "",
+        ...nuevaResena
+      });
     }
 
     guardarEstado();
@@ -727,6 +784,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     resenasPorProducto[productoModalActual.id].unshift({
+      autor,
+      estrellas: estrellasSeleccionadas,
+      comentario
+    });
+
+    enviarResenaASheet({
+      tipo: "producto",
+      productoId: productoModalActual.id,
+      productoNombre: productoModalActual.nombre,
       autor,
       estrellas: estrellasSeleccionadas,
       comentario
